@@ -1,12 +1,19 @@
-<div *ngFor="let product of products">
-	{{product.name}}
-	{{product.price}}
-	{{product.id}}
-</div>
-
 <form (ngSubmit)='create()' #form="ngForm">
 	<input type="text" [(ngModel)]='product.name' name="name">
 	<input type="number" [(ngModel)]='product.price' name="price">
 
-	<button type="submit" [disabled]="form.form.valid">Envoyer</button>
+	<button type="submit">Envoyer</button>
 </form>
+
+
+<form *ngIf="productToUpdate" (ngSubmit)='update()'>
+	<input type="text" [(ngModel)]='productToUpdate.name' name="name">
+	<input type="number" [(ngModel)]='productToUpdate.price' name="price">
+
+	<button type="submit">Modifier</button>
+</form>
+
+<div *ngFor="let product of products">
+	{{product.name}}
+	{{product.price}}
+</div>

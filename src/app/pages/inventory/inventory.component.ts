@@ -14,6 +14,8 @@ export class InventoryComponent implements OnInit {
 
   products: Product[] = [];
 
+  productToUpdate: Product;
+
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
@@ -36,9 +38,17 @@ export class InventoryComponent implements OnInit {
     });
   }
 
+  update() {
+    this.productService.update(this.productToUpdate).subscribe((FreshlyUpdateProduct) => {
+      this.initProductList();
+      this.product[0] = FreshlyUpdateProduct;
+    });
+  }
+
   initProductList() {
     this.productService.getAll().subscribe((product: Product[]) => {
       this.products = product;
+      this.productToUpdate = { ...product[0] };
     });
   }
 

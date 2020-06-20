@@ -20,5 +20,9 @@ export class ProductService {
     return this.httpClient.post<Product>(ProductService.BASE_URL, product);
   }
 
+  public update(product: Product): Observable<Product> {
+    return this.httpClient.put<Product>(ProductService.BASE_URL + '/' + product.id, product);
+  }
+
 
 }
