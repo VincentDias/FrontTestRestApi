@@ -1,0 +1,53 @@
+<form (ngSubmit)="signup.valid && onSubmit()" #signup="ngForm">
+  <div>
+    <label for="firstname">Prénom :
+    </label>
+    <input name="firstname" type="text" [(ngModel)]="model.firstname" #firstname="ngModel" minlength="3" maxlength="15"
+      required>
+  </div>
+  <!-- Message d'erreurs -->
+  <div *ngIf="signup.submitted && firstname.errors">
+    <span *ngIf="firstname.errors?.required">Le prénom est requis</span>
+    <span *ngIf="firstname.errors?.minlength">La longueur minimale doit être supérieure à 3 caractères</span>
+    <span *ngIf="firstname.errors?.maxlength">La longueur maximale doit être inférieure à 15 caractères</span>
+  </div>
+  <div>
+    <label for="lastname">Nom :
+    </label>
+    <input name="name" type="text" [(ngModel)]="model.lastname" #lastname="ngModel" minlength="3" maxlength="15"
+      required>
+  </div>
+  <div *ngIf="signup.submitted && lastname.errors">
+    <span *ngIf="lastname.errors?.required">Le nom est requis</span>
+    <span *ngIf="lastname.errors?.minlength">La longueur minimale doit être supérieure à 3 caractères</span>
+    <span *ngIf="lastname.errors?.maxlength">La longueur maximale doit être inférieure à 15 caractères</span>
+  </div>
+  <div>
+    <label for="mail">Adresse email :
+    </label>
+    <input name="mail" type="email" [(ngModel)]="model.mail" #mail="ngModel" required email>
+  </div>
+  <div *ngIf="signup.submitted && mail.errors">
+    <span *ngIf="mail.errors.required">Le champ email est requis</span>
+  </div>
+  <div>
+    <label for="password">Mot de passe :
+    </label>
+    <input name="password" type="password" [(ngModel)]="model.password" #password="ngModel" required maxlength="30"
+      minlength="7">
+  </div>
+  <div *ngIf="signup.submitted && mail.errors">
+    <span *ngIf="mail.errors?.required">Le mot de passe est requis</span>
+    <span *ngIf="mail.errors?.minlength">La longueur minimale doit être supérieure à 7 caractères</span>
+    <span *ngIf="mail.errors?.maxlength">La longueur maximale doit être inférieure à 30 caractères</span>
+  </div>
+
+  <button type="submit">
+    Enregistrer
+  </button>
+</form>
+
+
+<!-- <button type="submit" [disabled]="!signup.form.valid">
+		Enregistrer
+	</button> -->
